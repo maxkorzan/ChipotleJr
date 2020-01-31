@@ -1,7 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,6 +26,78 @@ public class Main {
         String[] guac =      {"no guac", "guac", "guac"};
         String[] queso =     {"no queso", "queso", "queso"};
         String[] sourcream = {"no sourcream", "sourcream", "sourcream"};
+
+
+
+        //Build burrito
+        for(int num=1; num<=25; num++){
+
+            String[] burrito = {rice[randNum(4)],meat[randNum(8)],beans[randNum(4)],salsa[randNum(5)],
+                    veggies[randNum(4)],cheese[randNum(3)],guac[randNum(3)],queso[randNum(3)], sourcream[randNum(3)]};
+
+            double total = 0.00;
+            double itemPrice;
+
+            for(int i=0; i<burrito.length; i++){
+                if (Arrays.asList(burrito).contains("all")){
+                    itemPrice = 10;
+                }
+                else if (Arrays.asList(burrito).contains("none")){
+                    itemPrice = 0;
+                } else {
+                    itemPrice = 0.50;
+                }
+
+                total += itemPrice;
+            }
+
+            System.out.print("Burrito "+ num + ": ");
+            for(String key: burrito){
+                System.out.print(key + ", ");
+            }
+            System.out.printf("\t TOTAL: "+total);
+            System.out.println();
+
+
+        }
+
+    }
+
+    public static int randNum(int x){
+        Random rand = new Random();
+        return rand.nextInt(x);
+    }
+
+}
+
+
+
+ /*               switch(burrito[i]){
+                    case ""
+                }
+
+            }
+
+
+                    new ArrayList<>();
+            Collections.addAll(burrito, rice.get(randNum(rice.size())) + "\t \t" + meat.get(randNum(meat.size())) + "\t \t" + queso.get(randNum(queso.size())));
+
+            for(int i=0; i<burrito.size(); i++){
+
+            }
+
+
+            System.out.print("Burrito "+i+": ");
+            System.out.printf(rice.get(randNum(rice.size())) + "\t \t" + meat.get(randNum(meat.size())) + "\t \t" + queso.get(randNum(queso.size())));
+            System.out.println();
+
+
+        }
+
+
+
+
+
 
 //        generate 25 burritos
 //            each topping option in an Array (index 0 = "no", index 1 = "all")
@@ -113,3 +183,4 @@ public class Main {
 
 
 
+*/
