@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class JustMakeItWork {
+public class Part5 {
     public static void main(String[] args) {
 
         String[] rice =      {"no rice", "all rice", "white rice", "brown rice"};
@@ -180,19 +180,22 @@ public class JustMakeItWork {
 
         }
 
-        //display tally of all ingredients in the entire order
+
         Collections.sort(ingredientsTally);
 //        System.out.print("\n\nAll ingredients: ");
 //        System.out.println(ingredientsTally);
         System.out.println();
         System.out.println();
 
-        System.out.print("This order has ");
+
+        String input = "This order has ";
         for(int i=0; i<ingredientsTally.size(); i=i+Collections.frequency(ingredientsTally, ingredientsTally.get(i))){
-            System.out.print(Collections.frequency(ingredientsTally, ingredientsTally.get(i)) + " " + ingredientsTally.get(i) + ", ");
+            input += (Collections.frequency(ingredientsTally, ingredientsTally.get(i)) + " " + ingredientsTally.get(i) + ", ");
         }
 
-        System.out.println();
+        for (String line : textLimiter(input, 50)) {
+            System.out.println(line);
+        }
 
     }
 
@@ -201,5 +204,21 @@ public class JustMakeItWork {
         return rand.nextInt(x);
     }
 
+    public static ArrayList<String> textLimiter(String input, int limit) {
+        ArrayList<String> returnList = new ArrayList<>();
+        String[] parts = input.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String part : parts) {
+            if (sb.length() + part.length() > limit) {
+                returnList.add(sb.toString().substring(0, sb.toString().length() - 1));
+                sb = new StringBuilder();
+            }
+            sb.append(part + " ");
+        }
+        if (sb.length() > 0) {
+            returnList.add(sb.toString());
+        }
+        return returnList;
+    }
 
 }
